@@ -1,0 +1,58 @@
+:root{
+    --bg-light: hsl(212, 54%, 65%);
+    --bg-dark: hsl(212, 54%, 56%);
+    --boat: hsl(0, 79%, 43%);
+    --missed: rgb(177, 177, 177);
+    --touched: rgb(117, 218, 67);
+    --gap: 5px;
+}
+
+table {
+    border-spacing: 0;
+}
+
+.cell{
+    background-color: var(--bg-light);
+    --cell-size: 5vw;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    
+}
+
+.dark{
+    background-color: var(--bg-dark);
+}
+
+.cell.boat{
+    background-color: var(--boat);
+}
+
+.cell.missed{
+    background-color: var(--missed);
+}
+
+.cell.touched{
+    background-color: var(--touched);
+}
+
+h3 {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+footer {
+    margin: 0 auto;
+    width: -moz-fit-content;
+    width: fit-content;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 3px solid black;
+}
+
+input {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
