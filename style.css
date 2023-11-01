@@ -4,20 +4,102 @@
     --boat: hsl(0, 79%, 43%);
     --missed: rgb(177, 177, 177);
     --touched: rgb(117, 218, 67);
+    --drowned: rgb(19, 9, 34);
     --gap: 5px;
+    --cooldown: 2s;
+}
+
+*{
+    font-family: 'Courier New', Courier, monospace;
 }
 
 table {
     border-spacing: 0;
 }
 
+form{
+    width: -moz-fit-content;
+    width: fit-content;
+    table-layout: fixed;
+    border-collapse: collapse;
+    
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 1em;
+}
+
+section.selects{
+    display: flex;
+    flex-direction: column;
+}
+
+section{
+    border: 3px solid black;
+    border-radius: .5em;
+    overflow: hidden;
+}
+
+.colors{
+    margin: .5em auto;
+    text-align: center;
+}
+
+.colors>div{
+    margin: 0 auto;
+}
+
+p{
+    margin-bottom: 0;
+}
+
 .cell{
     background-color: var(--bg-light);
-    --cell-size: 5vw;
+    --cell-size: 4vw;
     width: var(--cell-size);
     height: var(--cell-size);
-    
 }
+table.shooting .cell {
+    animation: appear calc(var(--cooldown) + 1s) normal ease-out;
+}
+
+table{
+    position: relative;
+}
+table::before{
+    content: "À l'autre joueur";
+    z-index: -1;
+    clear: both;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    font-weight: bold;
+}
+table::after{
+    content: "";
+    height: 1em;
+    width: 100%;
+    z-index: -1;
+    clear: both;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    bottom:0;
+    background-color: var(--boat);
+    transform: translateX(-50%);
+
+    transform-origin: center;
+    animation: loading var(--cooldown) linear;
+}
+
+
+
 
 .dark{
     background-color: var(--bg-dark);
@@ -34,25 +116,65 @@ table {
 .cell.touched{
     background-color: var(--touched);
 }
+.cell.drowned{
+    background-color: var(--drowned);
+}
 
 h3 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0;
+}
+h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.75em;
+    opacity: .8;
+}
+header{
     margin: 0 auto;
     width: 100%;
-    text-align: center;
 }
 
-footer {
-    margin: 0 auto;
-    width: -moz-fit-content;
-    width: fit-content;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border: 3px solid black;
-}
-
-input {
+table input {
     background-color: transparent;
     width: 100%;
     height: 100%;
     border: none;
+    font-size: 1.5em;
+    color: white;
+    opacity: .5;
+    font-weight: 700;
+}
+
+input:not([name="id"]), select {
+    padding: 0.5em 1em;
+    margin: 1em;
+    border-radius: .5em;
+
+    border: 2px solid black;
+    font-weight: bold;
+
+}
+
+
+@keyframes appear {
+    0%{
+        opacity: 0;
+    }
+    90%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes loading {
+    0%{
+        transform: translateX(-50%) scaleX(0%);
+    }
+    100%{
+        transform: translateX(-50%) scaleX(100%);
+    }
 }
