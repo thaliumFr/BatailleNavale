@@ -13,7 +13,7 @@ note : on aurait probablement du utiliser un enum mais c'etait plus simple pour 
 */
 
 // INITIATION
-$Size = 8;
+$Size = 10;
 $GridA = isset($_SESSION['A']) ? json_decode($_SESSION['A'], true) : [];
 $GridB = isset($_SESSION['B']) ? json_decode($_SESSION['B'], true) : [];
 
@@ -493,9 +493,9 @@ Update();
     <header>
         <h3>Bataille Navale</h3>
         <h2><?php
-            if($GameState == GameStates::PlaceBoatsA) echo "Place your boats (player A)";
-            if($GameState == GameStates::PlaceBoatsB) echo "Place your boats (player B)";
-            if($GameState == GameStates::Shootings) echo "Shoot (player ".($isTurnToB ? "B" : "A").")";
+            if($GameState == GameStates::PlaceBoatsA) echo "Placez vous navires (player A)";
+            if($GameState == GameStates::PlaceBoatsB) echo "Placez vous navires (player B)";
+            if($GameState == GameStates::Shootings) echo "Tire (player ".($isTurnToB ? "B" : "A").")";
         ?></h2>
     </header>
         <?php if($GameState != GameStates::Ending){ ?>
@@ -517,10 +517,9 @@ Update();
                 </select>
                 <?php } else { ?> 
                     <div class="colors">
-                        <p>boat</p><div class="cell boat"></div>
-                        <p>missed</p><div class="cell missed"></div>
-                        <p>touched</p><div class="cell touched"></div>
-                        <p>drowned</p><div class="cell drowned"></div>
+                        <p>manqué</p><div class="cell missed"></div>
+                        <p>touché</p><div class="cell touched"></div>
+                        <p>coulé</p><div class="cell drowned"></div>
                     </div>
                 <?php } ?>  
                 <input type="submit" name="reset" value="reset">
